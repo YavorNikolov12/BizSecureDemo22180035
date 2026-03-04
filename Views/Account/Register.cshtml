@@ -1,0 +1,22 @@
+﻿@model BizSecureDemo22180035.ViewModels.RegisterVm
+@{
+    ViewData["Title"] = "Регистрация";
+}
+<form asp-action="Register" method="post">
+    @Html.AntiForgeryToken()
+    <div class="mb-2">
+        <label class="form-label">Email</label>
+        <input class="form-control" asp-for="Email" />
+    </div>
+    <div class="mb-2">
+        <label class="form-label">Password</label>
+        <input class="form-control" asp-for="Password" type="password" />
+    </div>
+    <div class="text-danger small">
+        @foreach (var e in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <div>@e.ErrorMessage</div>
+        }
+    </div>
+    <button class="btn btn-primary w-100" type="submit">Register</button>
+</form>
